@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace LanZouCloudAPI
 {
+
     public partial class LanZouCloud
     {
         private int _chunk_size = 4096;             // 上传或下载是的块大小
@@ -264,7 +265,7 @@ namespace LanZouCloudAPI
                         name = f_json["name_all"].ToString().Replace("&amp;", "&"),             // 文件名
                         time = time_format((string)f_json["time"]),                             // 上传时间
                         size = f_json["size"].ToString().Replace(",", ""),                      // 文件大小
-                        //type = Path.GetExtension(f_json["name_all"].ToString()).Substring(1),   // 文件类型
+                        type = Path.GetExtension(f_json["name_all"].ToString()).Substring(1),   // 文件类型
                         downloads = int.Parse(f_json["downs"].ToString()),                      // 下载次数
                         hasPassword = int.Parse(f_json["onof"].ToString()) == 1,                // 是否存在提取码
                         hasDescription = int.Parse(f_json["is_des"].ToString()) == 1,           // 是否存在描述
@@ -804,6 +805,10 @@ namespace LanZouCloudAPI
             LogResult(result, nameof(MoveFolder));
             return result;
         }
+
+
+
+
 
         /// <summary>
         /// 登录用户通过id下载文件(无需提取码)
